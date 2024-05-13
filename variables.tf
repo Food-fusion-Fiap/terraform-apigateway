@@ -19,7 +19,7 @@ variable "lambda_policy_attachment_name" {
 }
 
 variable "s3_bucket_name" {
-  default = "terraform-github-action"
+  default = "terraform-state-fiap-group-18"
 }
 
 variable "project_name" {
