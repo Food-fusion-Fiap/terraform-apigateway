@@ -1,0 +1,75 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+        "title" : "openapi3 for REST API",
+        "version" : "1.0"
+    },
+    "paths" : {
+        "/protected-by-lambda-authorizer" : {
+            "get" : {
+                "responses" : {
+                    "200" : {
+                        "description" : "Default response"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401-Unauthorized"
+                    }
+                },
+                "security" : [ {
+                    "foodFusionAuthorizer" : [ ]
+                } ],
+                "x-amazon-apigateway-integration" : {
+                    "type" : "http",
+                    "responses" : {
+                        "default" : {
+                            "statusCode" : "200"
+                        }
+                    },
+                    "httpMethod" : "GET",
+                    "uri" : "http://www.google.com.br"
+                }
+            }
+        },
+        "/not-protected" : {
+            "get" : {
+                "responses" : {
+                    "200" : {
+                    "description" : "Default response"
+                    }
+                },
+                "x-amazon-apigateway-integration" : {
+                    "type" : "http",
+                    "responses" : {
+                      "default" : {
+                        "statusCode" : "200"
+                      }
+                    },
+                    "httpMethod" : "GET",
+                    "uri" : "http://www.google.com.br"
+                }
+            }
+        }
+    },
+    "components" : {
+        "securitySchemes" : {
+            "foodFusionAuthorizer" : {
+                "type" : "apiKey",
+                "name" : "Authorization",
+                "in" : "header",
+                "x-amazon-apigateway-authorizer" : {
+                    "identitySource" : "method.request.header.Authorization",
+                    "authorizerUri" : "${authorizer_uri}",
+                    "authorizerResultTtlInSeconds" : 300,
+                    "type" : "token"
+                },
+                "x-amazon-apigateway-authtype": "Custom scheme with corporate claims"
+            }
+        },
+        "responses": {
+            "401-Unauthorized": {
+                "description": "Unauthorized"
+            }
+        }
+    },
+    "x-amazon-apigateway-importexport-version" : "1.0"
+}

@@ -1,3 +1,11 @@
+variable "regionDefault" {
+  default = "us-east-1"
+}
+
+variable "accountId" {
+  default = "211125364272"
+}
+
 variable "region" {
   description = "Região da AWS"
   default     = "us-east-1"
@@ -16,4 +24,8 @@ variable "lambda_role_name" {
 variable "lambda_policy_attachment_name" {
   description = "Nome da política de anexo da função Lambda"
   default     = "food-fusion-auth-policy-attachment"
+}
+
+variable "s3_bucket_name" {
+  default     = "terraform-state-fiap-group-18"
 }

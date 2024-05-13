@@ -1,6 +1,8 @@
 resource "aws_api_gateway_rest_api" "food_fusion_apigateway" {
   name = "food-fusion-api-gateway"
-  //body = file("${path.module}/doc.json")
+  body = templatefile("${path.module}/doc-test.json", {authorizer_uri = aws_lambda_function.lambda_authorizer.invoke_arn})
+
+  put_rest_api_mode = "merge"
 }
 
 resource "aws_api_gateway_resource" "authenticate" {
@@ -45,3 +47,9 @@ resource "aws_api_gateway_rest_api_policy" "apigateway_policy" {
   rest_api_id = aws_api_gateway_rest_api.food_fusion_apigateway.id
   policy      = data.aws_iam_policy_document.food_fusion_policy.json
 }
+/* 
+resource "aws_api_gateway_authorizer" "apigateway_lambda_authorizer" {
+  name                   = "food-fusion-authorizer"
+  rest_api_id            = aws_api_gateway_rest_api.food_fusion_apigateway.id
+  authorizer_uri         = aws_lambda_function.lambda_authorizer.invoke_arn
+} */
