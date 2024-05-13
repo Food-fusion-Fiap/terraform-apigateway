@@ -15,7 +15,7 @@ resource "aws_api_gateway_method" "authenticate_method" {
   rest_api_id   = aws_api_gateway_rest_api.food_fusion_apigateway.id
   resource_id   = aws_api_gateway_resource.authenticate.id
   http_method   = "GET"
-  authorization = "NONE"
+  authorization = "AWS_IAM"
 }
 
 resource "aws_api_gateway_integration" "integration" {
@@ -23,8 +23,7 @@ resource "aws_api_gateway_integration" "integration" {
   resource_id             = aws_api_gateway_resource.authenticate.id
   http_method             = aws_api_gateway_method.authenticate_method.http_method
   integration_http_method = "POST"
-  type                    = "AWS"
-  content_handling        = "CONVERT_TO_TEXT"
+  type                    = "AWS_PROXY"
   uri                     = data.aws_lambda_function.lambda_auth.invoke_arn
 }
 
