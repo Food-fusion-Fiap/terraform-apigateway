@@ -21,3 +21,8 @@ variable "lambda_policy_attachment_name" {
 variable "s3_bucket_name" {
   default = "terraform-github-action"
 }
+
+variable "project_name" {
+  description = "The name of the project"
+  default     = "food_fusion"
+}
