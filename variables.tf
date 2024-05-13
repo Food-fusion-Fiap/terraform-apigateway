@@ -29,3 +29,13 @@ variable "lambda_policy_attachment_name" {
 variable "s3_bucket_name" {
   default     = "terraform-state-fiap-group-18"
 }
+
+variable "project_name" {
+  description = "The name of the project"
+  default     = "food_fusion"
+}
+
+variable "jwt_secret" {
+  description = "Chave secreta JWT"
+  default     = ""
+}
