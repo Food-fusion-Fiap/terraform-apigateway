@@ -11,8 +11,23 @@ data "terraform_remote_state" "rds_state" {
 }
 
 locals {
-  aws_vpc_id = data.terraform_remote_state.rds_state.outputs.vpc_id
-  aws_public_subnet_id = data.terraform_remote_state.rds_state.outputs.public_subnet_id
+  aws_vpc_id            = data.terraform_remote_state.rds_state.outputs.vpc_id
+  aws_public_subnet_id  = data.terraform_remote_state.rds_state.outputs.public_subnet_id
   aws_private_subnet_id = data.terraform_remote_state.rds_state.outputs.private_subnet_id
-  aws_rds_public_sg_id = data.terraform_remote_state.rds_state.outputs.rds_public_sg_id
+  aws_rds_public_sg_id  = data.terraform_remote_state.rds_state.outputs.rds_public_sg_id
+}
+
+data "aws_security_group" "lambda_auth_sg" {
+  filter {
+    name   = "group-name"
+    values = ["lambda_auth_sg"]
+  }
+}
+
+data "aws_iam_role" "lambda_role" {
+  name = var.lambda_role_name
+}
+
+data "aws_lambda_function" "lambda_auth" {
+  function_name = var.lambda_function_name
 }

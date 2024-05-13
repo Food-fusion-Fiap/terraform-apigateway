@@ -1,11 +1,3 @@
-variable "regionDefault" {
-  default = "us-east-1"
-}
-
-variable "accountId" {
-  default = "211125364272"
-}
-
 variable "region" {
   description = "Região da AWS"
   default     = "us-east-1"
@@ -27,15 +19,10 @@ variable "lambda_policy_attachment_name" {
 }
 
 variable "s3_bucket_name" {
-  default     = "terraform-state-fiap-group-18"
+  default = "terraform-github-action"
 }
 
 variable "project_name" {
   description = "The name of the project"
   default     = "food_fusion"
-}
-
-variable "jwt_secret" {
-  description = "Chave secreta JWT"
-  default     = ""
 }
