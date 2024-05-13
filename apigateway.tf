@@ -45,6 +45,23 @@ resource "aws_api_gateway_stage" "food_fusion_stage_deployment" {
   stage_name    = "Food_fusion_test_deployment_stage"
 }
 
+/* 
+data "aws_iam_policy_document" "food_fusion_stage_policy" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+
+    actions   = ["execute-api:Invoke"]
+    resources = ["*"]
+  }
+}
+ */
+
+
 /**************************************************************/
 data "aws_iam_policy_document" "food_fusion_policy" {
   statement {
@@ -56,9 +73,10 @@ data "aws_iam_policy_document" "food_fusion_policy" {
     }
 
     actions   = ["execute-api:Invoke"]
-    resources = [aws_api_gateway_rest_api.food_fusion_apigateway.execution_arn]
+    resources = ["*"]
   }
 }
+
 
 resource "aws_api_gateway_rest_api_policy" "apigateway_policy" {
   rest_api_id = aws_api_gateway_rest_api.food_fusion_apigateway.id
