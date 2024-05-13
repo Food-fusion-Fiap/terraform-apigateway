@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "food_fusion_apigateway" {
   name = "food-fusion-api-gateway"
-  body = templatefile("${path.module}/doc-test.json", {authorizer_uri = aws_lambda_function.lambda_authorizer.invoke_arn})
+  body = templatefile("${path.module}/doc-test.json", { authorizer_uri = aws_lambda_function.lambda_authorizer.invoke_arn })
 
   put_rest_api_mode = "merge"
 }
@@ -24,7 +24,7 @@ resource "aws_api_gateway_integration" "integration" {
   http_method             = aws_api_gateway_method.authenticate_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.lambda_auth.invoke_arn
+  uri                     = data.aws_lambda_function.lambda_auth.invoke_arn
 }
 
 resource "aws_api_gateway_deployment" "food_fusion_deployment" {
@@ -45,23 +45,6 @@ resource "aws_api_gateway_stage" "food_fusion_stage_deployment" {
   stage_name    = "Food_fusion_test_deployment_stage"
 }
 
-/* 
-data "aws_iam_policy_document" "food_fusion_stage_policy" {
-  statement {
-    effect = "Allow"
-
-    principals {
-      type        = "AWS"
-      identifiers = ["*"]
-    }
-
-    actions   = ["execute-api:Invoke"]
-    resources = ["*"]
-  }
-}
- */
-
-
 /**************************************************************/
 data "aws_iam_policy_document" "food_fusion_policy" {
   statement {
@@ -77,14 +60,7 @@ data "aws_iam_policy_document" "food_fusion_policy" {
   }
 }
 
-
 resource "aws_api_gateway_rest_api_policy" "apigateway_policy" {
   rest_api_id = aws_api_gateway_rest_api.food_fusion_apigateway.id
   policy      = data.aws_iam_policy_document.food_fusion_policy.json
 }
-/* 
-resource "aws_api_gateway_authorizer" "apigateway_lambda_authorizer" {
-  name                   = "food-fusion-authorizer"
-  rest_api_id            = aws_api_gateway_rest_api.food_fusion_apigateway.id
-  authorizer_uri         = aws_lambda_function.lambda_authorizer.invoke_arn
-} */
