@@ -34,3 +34,4 @@ override.tf.json
 terraform.rc
 
 lambda-auth/dist/lambda_function/*
+*.zip
