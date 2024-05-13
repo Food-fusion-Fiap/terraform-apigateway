@@ -23,7 +23,8 @@ resource "aws_api_gateway_integration" "integration" {
   resource_id             = aws_api_gateway_resource.authenticate.id
   http_method             = aws_api_gateway_method.authenticate_method.http_method
   integration_http_method = "POST"
-  type                    = "AWS_PROXY"
+  type                    = "AWS"
+  content_handling        = "CONVERT_TO_TEXT"
   uri                     = data.aws_lambda_function.lambda_auth.invoke_arn
 }
 

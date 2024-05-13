@@ -1,12 +1,11 @@
 resource "aws_lambda_function" "lambda_authorizer" {
-  filename         = "lambda-auth/dist/lambda_function.zip"
-  source_code_hash = filebase64("lambda-auth/dist/lambda_function.zip")
-  function_name    = "food-fusion-authorizer"
-  role             = data.aws_iam_role.lambda_role.arn
-  handler          = "app/authorizer.handler"
-  runtime          = "nodejs20.x"
-  timeout          = 5
-  memory_size      = 128
+  filename      = "lambda-auth/dist/lambda_function.zip"
+  function_name = "food-fusion-authorizer"
+  role          = data.aws_iam_role.lambda_role.arn
+  handler       = "app/authorizer.handler"
+  runtime       = "nodejs20.x"
+  timeout       = 5
+  memory_size   = 128
 
   environment {
     variables = {
