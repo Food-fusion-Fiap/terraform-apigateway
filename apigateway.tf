@@ -27,6 +27,23 @@ resource "aws_api_gateway_integration" "integration" {
   uri                     = aws_lambda_function.lambda_auth.invoke_arn
 }
 
+resource "aws_api_gateway_deployment" "food_fusion_deployment" {
+  rest_api_id = aws_api_gateway_rest_api.food_fusion_apigateway.id
+
+  triggers = {
+    redeployment = sha1(jsonencode(aws_api_gateway_rest_api.food_fusion_apigateway.body))
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_api_gateway_stage" "food_fusion_stage_deployment" {
+  deployment_id = aws_api_gateway_deployment.food_fusion_deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.food_fusion_apigateway.id
+  stage_name    = "Food_fusion_test_deployment_stage"
+}
 
 /**************************************************************/
 data "aws_iam_policy_document" "food_fusion_policy" {
