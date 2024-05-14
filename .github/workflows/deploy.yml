@@ -37,27 +37,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
-      - name: Clone repository
-        run: |
-          git clone https://github.com/Food-fusion-Fiap/lambda-auth
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --production
-        working-directory: lambda-auth
-
-      - name: Build TypeScript
-        run: npm run build
-        working-directory: lambda-auth
-        
-      - name: Create ZIP file
-        run: zip -r lambda_function.zip .
-        working-directory: lambda-auth/dist
-
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
