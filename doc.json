@@ -18,6 +18,19 @@
   "paths": {
     "/customers": {
       "post": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "POST",
+          "uri" : "${load_balancer_uri}/customers"
+        },
         "tags": [
           "Cliente"
         ],
@@ -96,6 +109,19 @@
         }
       },
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/customers"
+        },
         "tags": [
           "Cliente"
         ],
@@ -160,6 +186,19 @@
     },
     "/products": {
       "post": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "POST",
+          "uri" : "${load_balancer_uri}/products"
+        },
         "tags": [
           "Produto"
         ],
@@ -231,6 +270,19 @@
         }
       },
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/products"
+        },
         "tags": [
           "Produto"
         ],
@@ -293,6 +345,19 @@
     },
     "/products/{productId}": {
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/products/{productId}"
+        },
         "tags": [
           "Produto"
         ],
@@ -343,6 +408,19 @@
         }
       },
       "delete": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "DELETE",
+          "uri" : "${load_balancer_uri}/products/{productId}"
+        },
         "tags": [
           "Produto"
         ],
@@ -374,6 +452,19 @@
         }
       },
       "patch": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "PATCH",
+          "uri" : "${load_balancer_uri}/products/{productId}"
+        },
         "tags": [
           "Produto"
         ],
@@ -476,6 +567,19 @@
     },
     "/products/categories": {
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/products/categories"
+        },
         "tags": [
           "Produto"
         ],
@@ -535,6 +639,19 @@
     },
     "/orders": {
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/orders"
+        },
         "tags": [
           "Pedido"
         ],
@@ -605,6 +722,19 @@
         }
       },
       "post": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "POST",
+          "uri" : "${load_balancer_uri}/orders"
+        },
         "tags": [
           "Pedido"
         ],
@@ -730,6 +860,19 @@
     },
     "/orders/{orderId}": {
       "patch": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "PATCH",
+          "uri" : "${load_balancer_uri}/orders/{orderId}"
+        },
         "tags": [
           "Pedido"
         ],
@@ -813,6 +956,19 @@
     },
     "/payments/status": {
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/payments/status"
+        },
         "summary": "Obtém o status de pagamento do pedido",
         "tags": [
           "Pagamento"
@@ -865,6 +1021,19 @@
     },
     "/payments/qr-code": {
       "get": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+                "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "GET",
+          "uri" : "${load_balancer_uri}/payments/qr-code"
+        },
         "summary": "Obtém código QR Code",
         "tags": [
           "Pagamento"
@@ -903,6 +1072,19 @@
     },
     "/payments": {
       "post": {
+        "security" : [ {
+          "foodFusionAuthorizer" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "responses" : {
+              "default" : {
+                  "statusCode" : "200"
+              }
+          },
+          "httpMethod" : "POST",
+          "uri" : "${load_balancer_uri}/payments"
+        },
         "summary": "Webhook do Mercado Pago",
         "operationId": "mercado-pago-payment",
         "responses": {
@@ -1028,6 +1210,20 @@
     }
   ],
   "components": {
+    "securitySchemes" : {
+      "foodFusionAuthorizer" : {
+          "type" : "apiKey",
+          "name" : "Authorization",
+          "in" : "header",
+          "x-amazon-apigateway-authorizer" : {
+              "identitySource" : "method.request.header.Authorization",
+              "authorizerUri" : "${authorizer_uri}",
+              "authorizerResultTtlInSeconds" : 300,
+              "type" : "token"
+          },
+          "x-amazon-apigateway-authtype": "Custom scheme with corporate claims"
+      }
+    },
     "responses": {
       "400-BadRequest": {
         "description": "Bad Request",
@@ -1333,5 +1529,6 @@
         "description": "PaymentStatus"
       }
     }
-  }
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
 }

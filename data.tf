@@ -9,10 +9,20 @@ data "terraform_remote_state" "lambda_state" {
   }
 }
 
+data "terraform_remote_state" "eks_state" {
+  backend = "s3"
+  config = {
+    bucket = var.s3_bucket_name
+    key    = "prod/terraform-eks.tfstate"
+    region = "us-east-1"
+  }
+}
+
 locals {
   lambda_authorizer_invoke_arn = data.terraform_remote_state.lambda_state.outputs.lambda_authorizer_invoke_arn
   lambda_authenticate_function_name = data.terraform_remote_state.lambda_state.outputs.lambda_authenticate_function_name
   lambda_authorizer_function_name = data.terraform_remote_state.lambda_state.outputs.lambda_authorizer_function_name
+  eks_endpoint = data.terraform_remote_state.eks_state.outputs.load_balancer_dns
 }
 
 data "aws_security_group" "lambda_auth_sg" {
