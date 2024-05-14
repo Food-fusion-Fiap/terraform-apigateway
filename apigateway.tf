@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "food_fusion_apigateway" {
   name = "food-fusion-api-gateway"
-  body = templatefile("${path.module}/doc.json", { authorizer_uri = local.lambda_authorizer_invoke_arn, load_balancer_uri = "https://google.com.br" })
+  body = templatefile("${path.module}/doc.json", { authorizer_uri = local.lambda_authorizer_invoke_arn, load_balancer_uri = local.eks_cluster_endpoint })
 
   put_rest_api_mode = "merge"
 }

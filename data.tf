@@ -22,7 +22,7 @@ locals {
   lambda_authorizer_invoke_arn = data.terraform_remote_state.lambda_state.outputs.lambda_authorizer_invoke_arn
   lambda_authenticate_function_name = data.terraform_remote_state.lambda_state.outputs.lambda_authenticate_function_name
   lambda_authorizer_function_name = data.terraform_remote_state.lambda_state.outputs.lambda_authorizer_function_name
-  load_balancer_dns = data.terraform_remote_state.eks_state.outputs.load_balancer_dns
+  eks_cluster_endpoint = data.terraform_remote_state.eks_state.outputs.eks_cluster_endpoint
 }
 
 data "aws_security_group" "lambda_auth_sg" {
